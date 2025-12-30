@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.bauTheme) private var theme
+    
     var body: some View {
         ZStack {
-            Color("BAUPrimary")
+            theme.background
                 .ignoresSafeArea()
             
             Text("Business As Usual")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(theme.onBackground)
         }
     }
 }

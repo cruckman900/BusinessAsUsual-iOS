@@ -12,6 +12,7 @@ struct BusinessAsUsualiOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .bauTheme(ThemeRegistry.bau)
         }
     }
 }
