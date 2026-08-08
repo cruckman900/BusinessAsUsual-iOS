@@ -143,12 +143,63 @@ struct ModuleHostScreen: View {
                 // Selected screen content
                 if viewModel.selectedScreen == "__overview__" {
                     moduleOverview(moduleUi)
+                } else if let selectedScreen = viewModel.selectedScreen,
+                          let screen = moduleUi.screens[selectedScreen] {
+                    dynamicScreen(screen: screen, screenKey: selectedScreen)
                 } else {
-                    // TODO: Phase 3 - Render dynamic screens here
                     placeholderScreen(moduleUi)
                 }
             }
         }
+    }
+    
+    /// Renders the appropriate dynamic screen based on ScreenSpec type.
+    @ViewBuilder
+    private func dynamicScreen(screen: ScreenSpec, screenKey: String) -> some View {
+        switch screen {
+        case let listSpec as ListScreenSpec:
+            DynamicListScreen(
+                spec: listSpec,
+                rows: viewModel.screenData[screenKey] ?? [],
+                onAction: handleAction
+            )
+            
+        case let detailSpec as DetailScreenSpec:
+            DynamicDetailScreen(
+                spec: detailSpec,
+                values: viewModel.screenData[screenKey]?.first ?? [:],
+                onAction: handleAction
+            )
+            
+        default:
+            // Other screen types coming in next phase
+            placeholderForType(screen)
+        }
+    }
+    
+    private func handleAction(_ action: ScreenAction) {
+        // TODO: Implement action handling (navigation, API calls)
+        print("Action triggered: \(action.label)")
+    }
+    
+    private func placeholderForType(_ screen: ScreenSpec) -> some View {
+        VStack(spacing: 16) {
+            Image(systemName: "wrench.and.screwdriver")
+                .font(.system(size: 48))
+                .foregroundColor(theme.onBackground.opacity(0.3))
+            
+            Text("Screen Type: \(String(describing: type(of: screen)))")
+                .font(.headline)
+                .foregroundColor(theme.onBackground)
+            
+            Text("Renderer coming soon in Phase 3")
+                .font(.subheadline)
+                .foregroundColor(theme.onBackground.opacity(0.7))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 48)
     }
     
     private func filterChip(label: String, icon: String, isSelected: Bool, isEnabled: Bool, action: @escaping () -> Void) -> some View {

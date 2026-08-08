@@ -159,7 +159,7 @@ struct ListScreenSpec: ScreenSpec {
     }
 }
 
-struct ListColumn: Codable {
+struct ListColumn: Codable, Equatable {
     let name: String
     let label: String
     let type: String
