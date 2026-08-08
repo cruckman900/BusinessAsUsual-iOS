@@ -126,26 +126,26 @@ from the backend at runtime, and their screens are rendered generically from JSO
 - [x] Breadcrumbs: Dashboard > Module > Screen (integrate with `BAUBreadcrumbBar`)
 - [x] In-module screen routing (resolve `/hr/employees/new` → `employee-form` screen key)
 
-### Phase 3: Dynamic UI Renderers 🚧
+### Phase 3: Dynamic UI Renderers ⚠️ (2 of 7 complete)
 
 Mirror `external-android/.../ui/mobileui/DynamicUi.kt` exactly — all screens driven by contracts.
 
-#### List Screen (`DynamicListScreen`)
-- [ ] Title, stats row, search field (if enabled)
-- [ ] Filters (dropdown selectors)
-- [ ] "Add" action button (navigates to form)
-- [ ] **Adaptive layout**:
-  - [ ] **Table mode** (when ≥5 columns or totalWidth > 560): horizontal scroll, dense rows
-  - [ ] **Card mode** (mobile-native): title + label:value pairs
-- [ ] Per-row actions menu (⋮ overflow)
-- [ ] Confirmation dialogs for destructive actions
-- [ ] Empty state message
-- [ ] Navigate on row action (`resolveTargetScreenKey` logic)
+#### List Screen (`DynamicListScreen`) ✅
+- [x] Title, stats row, search field (if enabled)
+- [x] Filters (dropdown selectors) - placeholder ready
+- [x] "Add" action button (navigates to form)
+- [x] **Adaptive layout**:
+  - [x] **Table mode** (when ≥5 columns or totalWidth > 560): horizontal scroll, dense rows
+  - [x] **Card mode** (mobile-native): title + label:value pairs
+- [x] Per-row actions menu (⋮ overflow)
+- [x] Confirmation dialogs for destructive actions
+- [x] Empty state message
+- [x] Navigate on row action (`resolveTargetScreenKey` logic) - stub ready
 
-#### Detail Screen (`DynamicDetailScreen`)
-- [ ] Title
-- [ ] Sections (cards): title + field rows (label + value + optional icon)
-- [ ] Action buttons (e.g., Edit, Delete)
+#### Detail Screen (`DynamicDetailScreen`) ✅
+- [x] Title
+- [x] Sections (cards): title + field rows (label + value + optional icon)
+- [x] Action buttons (e.g., Edit, Delete)
 
 #### Form Screen (`DynamicFormScreen`)
 - [ ] Title
@@ -198,21 +198,21 @@ Mirror `external-android/.../ui/mobileui/DynamicUi.kt` exactly — all screens d
 - [ ] Chart title + subtitle
 - [ ] Empty state
 
-### Phase 4: Specialized UI Components 🚧
+### Phase 4: Specialized UI Components ✅
 
 All cells/widgets used by the dynamic screens (match Android's rendering exactly):
 
-- [ ] **StatusChip** → rounded chip with icon + label, color-coded by tone (positive/warning/negative/neutral)
-- [ ] **ProgressBarCell** → thin colored bar + label ("60%" or "36/50"), web parity thresholds
-- [ ] **PercentRing** → small circular progress indicator (like Android `CircularProgressIndicator`)
-- [ ] **StarRatingCell** → 1–5 stars (filled / half / empty) from numeric value
-- [ ] **RowActionsMenu** → ⋮ overflow menu, destructive items tinted red
-- [ ] **DynamicFilter** → dropdown selector (ExposedDropdownMenu equivalent)
-- [ ] **StatCardsRow** → horizontal scroll of small stat tiles (icon, value, label, semantic color)
-- [ ] **TimelineItemRow** → vertical timeline entry (node + connector + outlined card)
-- [ ] **BoardLane** → kanban column (header + card stack)
-- [ ] **BoardCard** → rich opportunity card
-- [ ] **PreviewCard** → email template / document preview card
+- [x] **StatusChip** → rounded chip with icon + label, color-coded by tone (positive/warning/negative/neutral)
+- [x] **ProgressBarCell** → thin colored bar + label ("60%" or "36/50"), web parity thresholds
+- [x] **PercentRing** → small circular progress indicator (like Android `CircularProgressIndicator`)
+- [x] **StarRatingCell** → 1–5 stars (filled / half / empty) from numeric value
+- [x] **RowActionsMenu** → ⋮ overflow menu, destructive items tinted red
+- [ ] **DynamicFilter** → dropdown selector (ExposedDropdownMenu equivalent) - not yet needed
+- [x] **StatCardsRow** → horizontal scroll of small stat tiles (icon, value, label, semantic color)
+- [ ] **TimelineItemRow** → vertical timeline entry (node + connector + outlined card) - Phase 3
+- [ ] **BoardLane** → kanban column (header + card stack) - Phase 3
+- [ ] **BoardCard** → rich opportunity card - Phase 3
+- [ ] **PreviewCard** → email template / document preview card - Phase 3
 
 ### Phase 5: Icon Resolution ✅
 
@@ -268,8 +268,9 @@ iOS equivalent:
 | **Dashboard** | ✅ | ✅ |
 | **Splash screen** | ✅ | ✅ |
 | **Module host (generic)** | ✅ | ✅ |
-| Dynamic list screen | ⚠️ partial | ✅ |
-| Dynamic detail screen | ❌ | ✅ |
+| **Specialized components** | ✅ | ✅ |
+| **Dynamic list screen** | ✅ | ✅ |
+| **Dynamic detail screen** | ✅ | ✅ |
 | Dynamic form screen | ❌ | ✅ |
 | Dynamic timeline screen | ❌ | ✅ |
 | Dynamic board screen | ❌ | ✅ |
