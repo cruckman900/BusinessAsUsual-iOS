@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Xcode — user-specific state
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Xcode — build products / derived data
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager (keep Package.resolved for reproducible builds)
+.build/
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+
+# CocoaPods (removed — migrated to SPM; ignore if it ever reappears)
+Pods/
+
+# Reference apps — these are their own git repositories, not part of the iOS app
+external-android/
+external-android */
+external-web/
+
+# Misc
+*.log
