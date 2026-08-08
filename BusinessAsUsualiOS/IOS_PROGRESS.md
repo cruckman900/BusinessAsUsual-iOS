@@ -71,40 +71,40 @@ from the backend at runtime, and their screens are rendered generically from JSO
 3. **Generic rendering** → All screens render from `ScreenSpec` (List, Detail, Form, Timeline, Board, CardCollection, Chart)
 4. **In-module navigation** → Module host screen manages tab/section navigation within a module
 
-### Phase 1: Domain Models & Data Layer 🚧
+### Phase 1: Domain Models & Data Layer ✅
 
 #### Domain Models (match `external-android/domain/src/main/java/work/businessasusual/domain/model/`)
 - [x] `BAUModule` (basic module metadata)
-- [ ] `ModuleUi` (full UI contract: screens, navigation, version)
-- [ ] `ScreenSpec` protocol & concrete types:
-  - [ ] `ListScreenSpec` (columns, filters, stats, actions, empty state)
-  - [ ] `DetailScreenSpec` (sections, fields, actions)
-  - [ ] `FormScreenSpec` (sections, fields, validation, actions)
-  - [ ] `TimelineScreenSpec` (item fields, stats, search, actions)
-  - [ ] `BoardScreenSpec` (kanban: columns, card layout, drag-to-move)
-  - [ ] `CardCollectionScreenSpec` (rich preview cards: email templates, etc.)
-  - [ ] `ChartScreenSpec` (line, bar, pie, donut, sparkline)
-- [ ] Supporting models:
-  - [ ] `NavigationMap`, `NavItem`
-  - [ ] `ListColumn`, `Filter`, `FilterValue`, `StatCard`
-  - [ ] `ScreenAction` (navigate | api-call | custom, with confirmation)
-  - [ ] `BoardColumn`, `BoardCardLayout`, `CardLayout`
-  - [ ] `TimelineItemFields`
-  - [ ] `DetailSection`, `DetailField`
-  - [ ] `FormSection`, `FormField`, `SelectOption`, `FormValidation`
-  - [ ] `ChartSpec`, `ChartSeries`, `ChartDataPoint`
-- [ ] Constants: `ChartTypes`, `ActionTypes`, `FieldTypes`
+- [x] `ModuleUi` (full UI contract: screens, navigation, version)
+- [x] `ScreenSpec` protocol & concrete types:
+  - [x] `ListScreenSpec` (columns, filters, stats, actions, empty state)
+  - [x] `DetailScreenSpec` (sections, fields, actions)
+  - [x] `FormScreenSpec` (sections, fields, validation, actions)
+  - [x] `TimelineScreenSpec` (item fields, stats, search, actions)
+  - [x] `BoardScreenSpec` (kanban: columns, card layout, drag-to-move)
+  - [x] `CardCollectionScreenSpec` (rich preview cards: email templates, etc.)
+  - [x] `ChartScreenSpec` (line, bar, pie, donut, sparkline)
+- [x] Supporting models:
+  - [x] `NavigationMap`, `NavItem`
+  - [x] `ListColumn`, `Filter`, `FilterValue`, `StatCard`
+  - [x] `ScreenAction` (navigate | api-call | custom, with confirmation)
+  - [x] `BoardColumn`, `BoardCardLayout`, `CardLayout`
+  - [x] `TimelineItemFields`
+  - [x] `DetailSection`, `DetailField`
+  - [x] `FormSection`, `FormField`, `SelectOption`, `FormValidation`
+  - [x] `ChartSpec`, `ChartSeries`, `ChartDataPoint`
+- [x] Constants: `ChartTypes`, `ActionTypes`, `FieldTypes`
 
 #### Repositories & API Layer
-- [ ] `ModuleRepository` protocol + impl → `GET /api/modules` (discover modules)
-- [ ] `MobileUIRepository` protocol + impl → `GET /api/mobile-ui/{moduleId}` (fetch contract)
-- [ ] `UISpecRepository` enhancements → fetch row data for list/timeline/board screens
-- [ ] Alamofire-based JSON decoding for all contract types
+- [x] `ModuleRepository` protocol + impl → `GET /api/modules` (discover modules)
+- [x] `MobileUIRepository` protocol + impl → `GET /api/mobile-ui/{moduleId}` (fetch contract)
+- [x] `UISpecRepository` enhancements → fetch row data for list/timeline/board screens
+- [x] Alamofire-based JSON decoding for all contract types
 
 #### Use Cases
-- [ ] `GetModulesUseCase` → fetch & cache discovered modules
-- [ ] `GetModuleUIContractUseCase` → fetch & cache module UI spec
-- [ ] `GetScreenDataUseCase` → fetch rows for a given screen (cached in ViewModel)
+- [x] `GetModulesUseCase` → fetch & cache discovered modules
+- [x] `GetModuleUIContractUseCase` → fetch & cache module UI spec
+- [x] `GetScreenDataUseCase` → fetch rows for a given screen (cached in ViewModel)
 
 ### Phase 2: Core Screens 🚧
 
@@ -214,16 +214,16 @@ All cells/widgets used by the dynamic screens (match Android's rendering exactly
 - [ ] **BoardCard** → rich opportunity card
 - [ ] **PreviewCard** → email template / document preview card
 
-### Phase 5: Icon Resolution 🚧
+### Phase 5: Icon Resolution ✅
 
 Android uses `MaterialIconResolver` (reflection-based icon name → ImageVector lookup).
 iOS equivalent:
 
-- [ ] `iconFor(_ name: String) -> Image` function
-- [ ] Map contract icon names to SF Symbols (e.g., `"dashboard"` → `"square.grid.2x2"`)
-- [ ] Fallback icon for unknown names
-- [ ] Common mappings:
-  - `people`, `person`, `hr` → `person.2` or `person.3`
+- [x] `iconFor(_ name: String) -> Image` function (implemented as `IconResolver.resolve()`)
+- [x] Map contract icon names to SF Symbols (e.g., `"dashboard"` → `"square.grid.2x2"`)
+- [x] Fallback icon for unknown names (`"questionmark.square.dashed"`)
+- [x] Common mappings:
+  - `people`, `person`, `hr` → `person.2`
   - `finance`, `money` → `dollarsign.circle`
   - `crm`, `customers` → `briefcase`
   - `dashboard` → `square.grid.2x2`
@@ -231,7 +231,7 @@ iOS equivalent:
   - `edit` → `pencil`
   - `delete` → `trash`
   - `search` → `magnifyingglass`
-  - etc.
+  - 100+ additional mappings in `IconResolver.swift`
 
 ### Phase 6: Navigation & App Shell Integration ✅
 
@@ -261,6 +261,9 @@ iOS equivalent:
 | Theme system | ✅ | ✅ |
 | Shell/navigation | ✅ | ✅ |
 | Material-style components | ✅ | ✅ |
+| **Contract models** | ✅ | ✅ |
+| **Repositories/API** | ✅ | ✅ |
+| **Icon resolution** | ✅ | ✅ |
 | Module discovery | ⚠️ partial | ✅ |
 | Dashboard | ❌ | ✅ |
 | Splash screen | ❌ | ✅ |
@@ -272,7 +275,5 @@ iOS equivalent:
 | Dynamic board screen | ❌ | ✅ |
 | Dynamic card collection | ❌ | ✅ |
 | Chart dashboard | ❌ | ✅ |
-| Contract models | ⚠️ partial | ✅ |
-| Repositories/API | ⚠️ partial | ✅ |
 
 **Legend:** ✅ done | ⚠️ partial | ❌ not started
