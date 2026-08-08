@@ -17,8 +17,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1369FE7F2F0372C80048CE33 /* BusinessAsUsualiOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BusinessAsUsualiOS;
 			sourceTree = "<group>";
 		};

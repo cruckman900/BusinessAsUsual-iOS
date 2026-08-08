@@ -14,7 +14,7 @@ public protocol GetEmployeeListSpecUseCase {
 public final class GetEmployeeListSpecUseCaseImpl: GetEmployeeListSpecUseCase {
     private let repository: UISpecRepositoryProtocol
 
-    public init(repository: UISpecRepositoryProtocol = DIContainer.uiSpecRepository) {
+    public init(repository: UISpecRepositoryProtocol) {
         self.repository = repository
     }
 

@@ -16,7 +16,7 @@ public class EmployeeListSpecViewModel: ObservableObject {
 
     private let getSpecUseCase: GetEmployeeListSpecUseCase
 
-    public init(getSpecUseCase: GetEmployeeListSpecUseCase = GetEmployeeListSpecUseCaseImpl()) {
+    public init(getSpecUseCase: GetEmployeeListSpecUseCase) {
         self.getSpecUseCase = getSpecUseCase
     }
 

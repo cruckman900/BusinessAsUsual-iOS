@@ -15,7 +15,8 @@ struct ContentView: View {
     @EnvironmentObject private var router: NavigationRouter
     @Environment(\.bauTheme) private var theme
 
-    private let modules = BAUModules.features
+    // Placeholder modules (will be replaced with dynamic discovery in Phase 2)
+    private let modules: [BAUModule] = []
 
     var body: some View {
         BAUScreenShell(
@@ -62,7 +63,8 @@ struct ContentView: View {
 
     private func moduleCard(_ module: BAUModule) -> some View {
         Button {
-            router.navigate(to: module.route)
+            // TODO: Wire up dynamic navigation in Phase 2
+            // router.navigate(to: module.route)
         } label: {
             HStack(spacing: 16) {
                 Image(systemName: module.icon)

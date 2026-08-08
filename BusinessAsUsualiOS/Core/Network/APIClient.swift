@@ -48,4 +48,9 @@ class APIClient {
             }
         }
     }
+    
+    /// Generic request method (infers type from context).
+    func request<T: Decodable>(_ endpoint: APIEndpoint) async throws -> T {
+        try await request(endpoint, responseType: T.self)
+    }
 }

@@ -8,7 +8,9 @@
 import SwiftUI
 
 public struct HRModuleDemoView: View {
-    @StateObject private var vm = EmployeeListSpecViewModel()
+    @StateObject private var vm = EmployeeListSpecViewModel(
+        getSpecUseCase: GetEmployeeListSpecUseCaseImpl(repository: DIContainer.shared.uiSpecRepository)
+    )
     private let specUrl: String
 
     public init(specUrl: String) {

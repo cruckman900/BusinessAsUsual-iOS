@@ -14,7 +14,7 @@ public protocol GetModuleUISpecUseCase {
 public final class GetModuleUISpecUseCaseImpl: GetModuleUISpecUseCase {
     private let repository: UISpecRepositoryProtocol
 
-    public init(repository: UISpecRepositoryProtocol = DIContainer.uiSpecRepository) {
+    public init(repository: UISpecRepositoryProtocol) {
         self.repository = repository
     }
 
