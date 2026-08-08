@@ -106,25 +106,25 @@ from the backend at runtime, and their screens are rendered generically from JSO
 - [x] `GetModuleUIContractUseCase` → fetch & cache module UI spec
 - [x] `GetScreenDataUseCase` → fetch rows for a given screen (cached in ViewModel)
 
-### Phase 2: Core Screens 🚧
+### Phase 2: Core Screens ✅
 
 #### Splash Screen
-- [ ] `SplashScreen.swift` → animated logo, auto-navigate to Dashboard after 1.5s
-- [ ] Match Android's simple fade-in animation
+- [x] `SplashScreen.swift` → animated logo, auto-navigate to Dashboard after 1.5s
+- [x] Match Android's simple fade-in animation
 
 #### Dashboard Screen
-- [ ] `DashboardScreen.swift` → welcome hero card + module grid
-- [ ] `DashboardViewModel` → fetch modules via `GetModulesUseCase`
-- [ ] Module cards: icon, name, description, tap → navigate to `module/{moduleId}`
-- [ ] Loading / error states
+- [x] `DashboardScreen.swift` → welcome hero card + module grid
+- [x] `DashboardViewModel` → fetch modules via `GetModulesUseCase`
+- [x] Module cards: icon, name, description, tap → navigate to `module/{moduleId}`
+- [x] Loading / error states
 
 #### Module Host Screen
-- [ ] `ModuleHostScreen.swift` → generic container for any module
-- [ ] `ModuleHostViewModel` → fetch `ModuleUi` contract, manage selected screen state
-- [ ] Overview landing (card grid of module sections, like Android `ModuleOverview`)
-- [ ] Horizontal tab/chip navigation (Overview | section 1 | section 2 | ...)
-- [ ] Breadcrumbs: Dashboard > Module > Screen (integrate with `BAUBreadcrumbBar`)
-- [ ] In-module screen routing (resolve `/hr/employees/new` → `employee-form` screen key)
+- [x] `ModuleHostScreen.swift` → generic container for any module
+- [x] `ModuleHostViewModel` → fetch `ModuleUi` contract, manage selected screen state
+- [x] Overview landing (card grid of module sections, like Android `ModuleOverview`)
+- [x] Horizontal tab/chip navigation (Overview | section 1 | section 2 | ...)
+- [x] Breadcrumbs: Dashboard > Module > Screen (integrate with `BAUBreadcrumbBar`)
+- [x] In-module screen routing (resolve `/hr/employees/new` → `employee-form` screen key)
 
 ### Phase 3: Dynamic UI Renderers 🚧
 
@@ -264,10 +264,10 @@ iOS equivalent:
 | **Contract models** | ✅ | ✅ |
 | **Repositories/API** | ✅ | ✅ |
 | **Icon resolution** | ✅ | ✅ |
-| Module discovery | ⚠️ partial | ✅ |
-| Dashboard | ❌ | ✅ |
-| Splash screen | ❌ | ✅ |
-| Module host (generic) | ❌ | ✅ |
+| **Module discovery** | ✅ | ✅ |
+| **Dashboard** | ✅ | ✅ |
+| **Splash screen** | ✅ | ✅ |
+| **Module host (generic)** | ✅ | ✅ |
 | Dynamic list screen | ⚠️ partial | ✅ |
 | Dynamic detail screen | ❌ | ✅ |
 | Dynamic form screen | ❌ | ✅ |
