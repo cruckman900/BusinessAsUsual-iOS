@@ -15,10 +15,8 @@ import SwiftUI
 struct BAUScreenShell<Content: View>: View {
     let title: String
     let breadcrumbs: [String]
-    let currentRoute: Route
     let content: Content
 
-    @EnvironmentObject private var router: NavigationRouter
     @EnvironmentObject private var themeManager: ThemeManager
 
     @State private var showMenu = false
@@ -27,12 +25,11 @@ struct BAUScreenShell<Content: View>: View {
     init(
         title: String,
         breadcrumbs: [String],
-        currentRoute: Route = .dashboard,
+        currentRoute: Route? = nil, // Optional for backward compatibility
         @ViewBuilder _ content: () -> Content
     ) {
         self.title = title
         self.breadcrumbs = breadcrumbs
-        self.currentRoute = currentRoute
         self.content = content()
     }
 
@@ -56,16 +53,19 @@ struct BAUScreenShell<Content: View>: View {
             }
             .background(theme.background)
 
-            // Navigation drawer (leading edge).
+            // Navigation drawer (leading edge) - TODO: Phase 6 - restore with dynamic modules
             SideDrawer(isOpen: $showMenu, edge: .leading) {
-                BAUNavigationDrawer(
-                    items: BAUModules.navigationItems,
-                    currentRoute: currentRoute,
-                    onSelect: { module in
-                        showMenu = false
-                        router.select(module.route)
-                    }
-                )
+                VStack {
+                    Text("Navigation")
+                        .font(.title2)
+                        .padding()
+                    Text("Module navigation will be restored in Phase 6")
+                        .font(.caption)
+                        .foregroundColor(theme.onBackground.opacity(0.6))
+                        .padding()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(theme.background)
             }
 
             // Theme drawer (trailing edge).
@@ -77,20 +77,9 @@ struct BAUScreenShell<Content: View>: View {
         .navigationBarBackButtonHidden(true)
     }
 
-    /// Tapping a breadcrumb navigates back to that level, matching Android:
-    /// the first crumb always returns to the dashboard; a module crumb reopens
-    /// that module.
+    /// Tapping a breadcrumb navigates back to that level - TODO: Phase 6 - restore navigation
     private func handleCrumbTap(_ index: Int) {
-        guard index < breadcrumbs.count else { return }
-        if index == 0 {
-            router.select(.dashboard)
-            return
-        }
-        let label = breadcrumbs[index]
-        if let module = BAUModules.features.first(where: { $0.name == label }) {
-            router.select(module.route)
-        } else {
-            router.select(.dashboard)
-        }
+        // Disabled until Phase 6 navigation integration
+        print("Breadcrumb tapped: \(breadcrumbs[index])")
     }
 }
