@@ -171,15 +171,67 @@ struct ModuleHostScreen: View {
                 onAction: handleAction
             )
             
+        case let formSpec as FormScreenSpec:
+            DynamicFormScreen(
+                spec: formSpec,
+                initialValues: viewModel.screenData[screenKey]?.first ?? [:],
+                onSubmit: { data in
+                    handleFormSubmit(data, action: formSpec.actions.first { $0.id == "submit" || $0.id == "save" })
+                },
+                onCancel: {
+                    viewModel.selectScreen("__overview__")
+                }
+            )
+            
+        case let timelineSpec as TimelineScreenSpec:
+            DynamicTimelineScreen(
+                spec: timelineSpec,
+                items: viewModel.screenData[screenKey] ?? [],
+                onAction: handleAction
+            )
+            
+        case let boardSpec as BoardScreenSpec:
+            DynamicBoardScreen(
+                spec: boardSpec,
+                items: viewModel.screenData[screenKey] ?? [],
+                onAction: handleAction
+            )
+            
+        case let cardSpec as CardCollectionScreenSpec:
+            DynamicCardCollectionScreen(
+                spec: cardSpec,
+                items: viewModel.screenData[screenKey] ?? [],
+                onAction: handleAction
+            )
+            
+        case let chartSpec as ChartScreenSpec:
+            DynamicChartScreen(spec: chartSpec)
+            
         default:
-            // Other screen types coming in next phase
             placeholderForType(screen)
         }
     }
     
     private func handleAction(_ action: ScreenAction) {
-        // TODO: Implement action handling (navigation, API calls)
+        // TODO: Phase 6 - Implement full action handling (navigation, API calls)
         print("Action triggered: \(action.label)")
+        if let navigateTo = action.navigateTo {
+            print("  Navigate to: \(navigateTo)")
+            // TODO: Resolve screen key and call viewModel.selectScreen()
+        }
+        if let apiEndpoint = action.apiEndpoint {
+            print("  API call to: \(apiEndpoint)")
+            // TODO: Make API call via repository
+        }
+    }
+    
+    private func handleFormSubmit(_ data: [String: String], action: ScreenAction?) {
+        print("Form submitted with data: \(data)")
+        if let endpoint = action?.apiEndpoint {
+            print("  Submitting to: \(endpoint)")
+            // TODO: POST/PUT via API client
+        }
+        // TODO: Show success message, navigate back
     }
     
     private func placeholderForType(_ screen: ScreenSpec) -> some View {
