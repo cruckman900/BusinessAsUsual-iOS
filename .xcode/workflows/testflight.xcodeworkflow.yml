@@ -1,0 +1,43 @@
+name: TestFlight Build
+description: Build and upload to TestFlight for public beta testing
+
+# Trigger on main branch commits and manual runs
+trigger:
+  branches:
+    - main
+  manual: true
+
+# Xcode Cloud environment
+environment:
+  xcode: latest
+  
+# Build configuration
+build:
+  # Build for iOS
+  platform: iOS
+  
+  # Use the main scheme
+  scheme: BusinessAsUsualiOS
+  
+  # Archive (creates .ipa for distribution)
+  archive:
+    configuration: Release
+    
+  # Post-build: Upload to TestFlight
+  post-actions:
+    - action: testflight
+      destination: external
+      groups:
+        - Public Beta Testers
+      
+# Optional: Run tests before archiving
+# test:
+#   scheme: BusinessAsUsualiOS
+#   platform: iOS Simulator
+#   destination: platform=iOS Simulator,name=iPhone 15 Pro
+
+# Notifications
+notifications:
+  - kind: email
+    on-success: true
+    on-failure: true
